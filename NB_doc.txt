@@ -1,0 +1,87 @@
+Classification of a document using a Naive Bayes Classifier:
+===========================================================
+Authors:				
+Janani. P  |  Maniteja. N  |  Sai Aparna. R
+
+- Date:				12/11/2014               
+- Programming Language:		Python
+
+:numbered!:
+Problem Description
+-------------------	
+Classifying a given text document into one of the predefined categories using a Naive Bayes Classifier.
+
+:numbered!:
+Overall Design:
+---------------			        
+Data representation 
+~~~~~~~~~~~~~~~~~~~
+-There are a set of documents pertaining various topics
+-In the present project, we use two topics
+--Sports
+--Politics
+-The data has been extracted in terms of a HASH MAP
+-The hash map stores the counts of various words in each of the documents
+-The conditional probability for all the words independently for each of the target variables is calculated and stored in form of a dictionary for lookup during testing 
+
+
+Algorithms used
+~~~~~~~~~~~~~~~
+Bayes theorem was used to calculate probabilities under the assumption of independence of each word.                       	
+
+Program Assumptions and Restrictions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~        
+- All training documents provided are in the English language and belong to one of the specified categories.
+- Probability of occurence of a word in a document is independent of the occurence of other words.
+
+Interfaces
+~~~~~~~~~~
+The document to be classified should be saved as a text file and the name/path should be specified in the program.
+
+:numbered!:
+Implementation Details:
+-----------------------
+class Vocab
+~~~~~~~~~~~
+
+Parses each document in the training data and for each category, it stores the number of occurences of each word and total no. of distinct words. Also stores total no. of distinct words and total no. of words occuring as a whole.
+
+class Naive_Bayes
+~~~~~~~~~~~~~~~~~
+.build_naive_bayes()
+
+Calculates and stores probability of each target category occuring and of each distinct word occuring, given either classification.
+
+.test_naive_bayes()
+
+Takes a text document to test and for each document, calculates probability(target | words) = probability (words | target).probability (target) by consider each word independent of all others and therefore, multiplying their probabilities. The output produced is the target with more probability.
+
+:numbered!:
+Training:
+---------
+A number of documents from the fields of politics and sports were collected from the internet and were used to train the classifier.
+
+:numbered!:
+Testing:
+--------
+Test Data
+~~~~~~~~~
+-The testing example is a sample document, which needs to be clasified as one of the target variables.
+
+-The documents used for testing the bayes classifier
+--Indian and international politicians
+--sports personalities and their political lives(if any) 
+--people who have the names similar to many politicians and sports persons
+
+Test Procedures
+~~~~~~~~~~~~~~~
+-The file which contains the testing document is read and the count of each of the words is made in the test_bayes function
+-For the words that are part of the vocabulary built on the initial training documents, the p(target|words) is calculated as mentioned above.
+[red]#IMPORTANT# The words that were not part of the vocabulary created are just ignored
+
+:numbered!:
+Results:
+--------
+A Naive Bayes classifier was written and used to classify text 
+documents under the fields of sports or politics.
+
